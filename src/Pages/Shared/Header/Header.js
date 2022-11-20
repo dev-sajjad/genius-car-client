@@ -6,13 +6,13 @@ const Header = () => {
   const menuItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link className="font-semibold" to="/">Home</Link>
       </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar mb-3 bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -38,13 +38,15 @@ const Header = () => {
             {menuItems}
           </ul>
         </div>
-        <img src={logo} className='h-16 w-16' alt="" />
+        <Link to="/">
+          <img src={logo} className="h-16 w-16" alt="" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn">Get started</Link>
+        <button className="btn btn-md btn-outline btn-warning">Appointment</button>
       </div>
     </div>
   );
