@@ -8,9 +8,9 @@ const Footer = () => {
         <div>
             <img src={logo} alt="" />
           <p>
-            ACME Industries Ltd.
+            Genius Car Ltd.
             <br />
-            Providing reliable tech since 1992
+            Providing reliable car service since 1992
           </p>
         </div>
         <div>
