@@ -34,12 +34,15 @@ const Orders = () => {
     if (proceed) {
       fetch(`http://localhost:5000/orders/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("genius-token")}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            alert('Successfully deleted order!')  
-            const remaining = orders.filter(odr => odr._id !== id);
+            alert("Successfully deleted order!");
+            const remaining = orders.filter((odr) => odr._id !== id);
             setOrders(remaining);
           }
         });
@@ -50,23 +53,24 @@ const Orders = () => {
 
   const handleStatusUpdate = (id) => {
     fetch(`http://localhost:5000/orders/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("genius-token")}`,
       },
-      body: JSON.stringify({status: 'Approved'})
+      body: JSON.stringify({ status: "Approved" }),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.modifiedCount > 0) {
-          const remaining = orders.filter(order => order._id !== id)
-          const approving = orders.find(odr => odr._id === id)
-          approving.status = 'Approved'
-          const newOrders = [approving, ...remaining]
-          setOrders(newOrders)
-       }
+          const remaining = orders.filter((order) => order._id !== id);
+          const approving = orders.find((odr) => odr._id === id);
+          approving.status = "Approved";
+          const newOrders = [approving, ...remaining];
+          setOrders(newOrders);
+        }
       })
-    .catch(err => console.error(err))
+      .catch((err) => console.error(err));
   } 
 
 

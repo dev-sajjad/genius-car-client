@@ -1,11 +1,12 @@
 import React from 'react';
 import { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Checkout = () => {
     const { _id, title, price, img } = useLoaderData();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
     const handlePlaceOrder = event => {
         event.preventDefault();
@@ -31,14 +32,15 @@ const Checkout = () => {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("genius-token")}`,
           },
           body: JSON.stringify(order),
         })
           .then((res) => res.json(order))
           .then((data) => {
-              if (data.acknowledged) {
-                console.log(data)
+            if (data.acknowledged) {
               form.reset();
+              navigate('/orders');
               alert("Successfully order placed!");
             }
           })
