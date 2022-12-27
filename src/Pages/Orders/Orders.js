@@ -11,7 +11,7 @@ const Orders = () => {
 
   // load user orders using email query 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`https://genius-car-server-dev-sajjad.vercel.app/orders?email=${user?.email}`, {
       // for JWT
       headers: {
         authorization: `Bearer ${localStorage.getItem('genius-token')}`
@@ -32,7 +32,7 @@ const Orders = () => {
   const handleDeleteOrder = (id) => {
     const proceed = window.confirm('Are you sure want to cancel this order!')
     if (proceed) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://genius-car-server-dev-sajjad.vercel.app/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -52,7 +52,7 @@ const Orders = () => {
 
 
   const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://genius-car-server-dev-sajjad.vercel.app/orders/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
