@@ -19,14 +19,10 @@ const Login = () => {
 
     login(email, password)
       .then((result) => {
-        const user = result.user;
-
-        const currentUser = {
-          email: user.email,
-        };
+        const user = result.user
 
        // call the jwt access token  function
-        setJwtAuthToken(currentUser);
+        setJwtAuthToken(user);
 
         // navigate user from where user wanted to go
         if (user) {
@@ -41,11 +37,9 @@ const Login = () => {
     googleLogin()
       .then(result => {
         const user = result.user;
-        const currentUser = {
-          email: user.email,
-        };
+
         // call the jwt access token  function
-        setJwtAuthToken(currentUser)
+        setJwtAuthToken(user)
       })
     .catch(error=> console.error(error))
   }
